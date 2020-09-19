@@ -28,19 +28,24 @@ function generatePassword() {
 
 //create prompt to select number of characters and Validate once entered
 function writePassword() {
+
+  
+
+  
   var confirmLength = prompt("How many characters would you like your password to be? Password must be between 8-128 characters.");
-//validate length of characters 8-128
+  confirmLength=parseInt(confirmLength)
+  //validate length of characters 8-128
   if(confirmLength < 8 || confirmLength > 128 || isNaN(confirmLength)) {
     return alert("Try entering a number between 8-128. Try again!");
   } 
   
 //confirm for specChar, numbers, upper ,lower
-  alert("Choose your password criteria"); {
+
 var confirmSpecChar = confirm("Click OK if you'd like to use special characters");
 var confirmNum = confirm("Click OK if you'd like to use numbers");    
 var confirmLowCase = confirm("Click OK if you'd like to use lowercase characters");
 var confirmUpCase = confirm("Click OK if you'd like to use uppercase characters");
-}
+
   
 // Loop if answer is outside the parameters 
 if(confirmUpCase === false && confirmLowCase === false && confirmSpecChar === false && confirmNum === false) {
@@ -48,18 +53,43 @@ if(confirmUpCase === false && confirmLowCase === false && confirmSpecChar === fa
   
 } 
 
-//if(lowCase) {
-  //container.push(...lowCase);
+
+var userInput = [];
+
+if(lowCase) {
+ userInput = userInput.concat(lowCase);
+}
+
+if(upCase) {
+  userInput = userInput.concat(upCase);
+}
+
+if(number) {
+  userInput = userInput.concat(number);
+}
+
+if(specChar) {
+  userInput = userInput.concat(specChar);
+}
+var password = "";
+for (var i = 0; i < confirmLength; i++) {
+  var ranNum = Math.floor(Math.random() * userInput.length);
+  password += userInput[ranNum] 
+} console.log(password)
+  
+  
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
 }
 
 
 
 
+  // var password = generatePassword();
+  // var passwordText = document.querySelector("#password");
 
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
+  // passwordText.value = password;
 
 
 
